@@ -27,14 +27,14 @@ public class PersonDaoImpl implements PersonDao {
     public void addPerson(Person person) {
         Session session = this.sessionFactory.getCurrentSession();
         session.persist(person);
-        logger.info("Person saved seccessfully, Person details: " + person.toString());
+        logger.info("Person saved successfully, Person details: " + person.toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Person> listPersons() {
         Session session = this.sessionFactory.getCurrentSession();
-        List<Person> personList = session.createSQLQuery("from Person").list();
+        List<Person> personList = session.createQuery("from Person").list();
         for (Person person : personList) {
             logger.info("Person List::" + person.toString());
         }
