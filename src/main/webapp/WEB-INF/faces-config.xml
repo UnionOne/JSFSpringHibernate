@@ -9,4 +9,14 @@
             org.springframework.web.jsf.el.SpringBeanFacesELResolver
         </el-resolver>
     </application>
+
+    <managed-bean>
+        <managed-bean-name>customer</managed-bean-name>
+        <managed-bean-class>com.itibo.spring.CustomerBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>customerBo</property-name>
+            <value>#{customerBo}</value>
+        </managed-property>
+    </managed-bean>
 </faces-config>
