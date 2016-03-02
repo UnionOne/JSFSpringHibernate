@@ -35,7 +35,7 @@ public class PersonDaoImpl implements PersonDao {
     public List<Person> listPersons() {
         Session session = this.sessionFactory.getCurrentSession();
         List<Person> personList = session.createSQLQuery("from Person").list();
-        for(Person person : personList){
+        for (Person person : personList) {
             logger.info("Person List::" + person.toString());
         }
         return personList;

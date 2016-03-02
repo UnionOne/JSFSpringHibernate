@@ -1,4 +1,4 @@
-package com.itibo.spring.dao;
+package com.itibo.spring.service;
 
 import com.itibo.spring.model.Person;
 
@@ -8,8 +8,8 @@ import java.util.List;
  * Created by union on 02.03.2016.
  */
 
-public interface PersonDao {
+public interface PersonService {
     void addPerson(Person person);
 
-    List<Person> listPersons();
+    public List<Person> listPersons();
 }
