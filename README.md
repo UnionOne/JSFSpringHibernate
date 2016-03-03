@@ -1,4 +1,4 @@
-##JSF 2 + Spring 4 + Hibernte integration
+##JSF 2 + Spring 4 + Hibernate integration
 
 ###There are some types of integrate saint Spring to JSF:
 + XML configs - shit
