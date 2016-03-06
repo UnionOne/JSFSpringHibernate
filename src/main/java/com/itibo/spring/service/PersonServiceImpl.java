@@ -2,6 +2,7 @@ package com.itibo.spring.service;
 
 import com.itibo.spring.dao.PersonDao;
 import com.itibo.spring.model.Person;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @ManagedBean(name = "personService")
 @SessionScoped
 public class PersonServiceImpl implements PersonService {
+    @Autowired
     private PersonDao personDao;
 
     public void setPersonDao(PersonDao personDao) {
