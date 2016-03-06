@@ -11,5 +11,7 @@ import java.util.List;
 public interface PersonDao {
     void addPerson(Person person);
 
+    void deletePerson(Person person);
+
     List<Person> listPersons();
 }

@@ -11,5 +11,7 @@ import java.util.List;
 public interface PersonService {
     void addPerson(Person person);
 
-    public List<Person> listPersons();
+    void deletePerson(Person person);
+
+    List<Person> listPersons();
 }

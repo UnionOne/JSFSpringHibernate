@@ -31,6 +31,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
+    public void deletePerson(Person person) {
+        this.personDao.deletePerson(person);
+    }
+
+    @Override
+    @Transactional
     public List<Person> listPersons() {
         return this.personDao.listPersons();
     }

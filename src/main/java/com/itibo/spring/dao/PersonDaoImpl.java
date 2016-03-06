@@ -30,6 +30,13 @@ public class PersonDaoImpl implements PersonDao {
         logger.info("Person saved successfully, Person details: " + person.toString());
     }
 
+    @Override
+    public void deletePerson(Person person) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.delete(person);
+        logger.info("Person delete successfully, Person details: " + person.toString());
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public List<Person> listPersons() {

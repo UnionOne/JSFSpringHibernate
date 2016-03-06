@@ -38,19 +38,23 @@
     <br/>
     <h3>Persons List</h3>
 
-        <table class="tg">
-            <tr>
-                <th width="80">Person ID</th>
-                <th width="120">Person Name</th>
-                <th width="120">Person Country</th>
-            </tr>
-            <ui:repeat value="#{personService.listPersons()}" var="person">
+    <table class="tg">
+        <tr>
+            <th width="80">Person ID</th>
+            <th width="120">Person Name</th>
+            <th width="120">Person Country</th>
+            <th width="80">Delete</th>
+        </tr>
+        <ui:repeat value="#{personService.listPersons()}" var="person">
+            <h:form>
                 <tr>
                     <td>#{person.id}</td>
                     <td>#{person.name}</td>
                     <td>#{person.country}</td>
+                    <td><h:commandButton value="Delete" action="#{personService.deletePerson(person)}"/></td>
                 </tr>
-            </ui:repeat>
-        </table>
+            </h:form>
+        </ui:repeat>
+    </table>
 </h:body>
 </html>
