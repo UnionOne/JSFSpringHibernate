@@ -1,9 +1,5 @@
 ##JSF 2 + Spring 4 + Hibernate integration
 
-###There are some types of integrate saint Spring to JSF:
-+ XML configs - shit
-+ Spring annotations
-
 ###First of all add dependencies to pom.xml:
 [pom.xml](https://github.com/UnionOne/JSFSpringHibernate/blob/master/pom.xml#L20-L25)
 ```xml
@@ -66,8 +62,8 @@
     </application>
 ```
 
-###Configure saint applicationContext.xml in WEB-INF folder:
-[applicationContext.xml](https://github.com/UnionOne/JSFSpringHibernate/blob/master/src/main/webapp/WEB-INF/applicationContext.xml)
+###Configure saint applicationContext.xml in resources folder:
+[applicationContext.xml](https://github.com/UnionOne/JSFSpringHibernate/blob/master/src/main/resources/spring/applicationContext.xml)
 ```xml
   ...
   <beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -75,19 +71,40 @@
         <beans:property name="url" value="jdbc:mysql://127.0.0.2:3306/schema"/>
         <beans:property name="username" value="root"/>
         <beans:property name="password" value="root"/>
-    </beans:bean>
+  </beans:bean>
   ...
 ```
 
-###Add listener to web.xml:
+###Configure saint hibernate.cfg.xml in resources folder to mapping model classes:
+[hibernate.cfg.xml](https://github.com/UnionOne/JSFSpringHibernate/blob/master/src/main/resources/hibernate/hibernate.cfg.xml)
+```xml
+  ...
+  <hibernate-configuration>
+        <session-factory>
+                <mapping class="com.itibo.spring.model.Person"/>
+        </session-factory>
+  </hibernate-configuration>
+  ...
+```
+
+###Add listener and context-param to web.xml:
 [web.xml](https://github.com/UnionOne/JSFSpringHibernate/blob/master/src/main/webapp/WEB-INF/web.xml#L10-L16)
 ```xml
+        ...
+    <!-- Add Support for Spring -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
+    
+    <!-- Context-param -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/applicationContext.xml</param-value>
+    </context-param>
+        ...
 ```
 
 ###Create new table in some schema:
@@ -101,7 +118,7 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
 
-###Spring annotation:
+###CRUD or other opearations with data base entity:
 [PersonDaoImpl.java](https://github.com/UnionOne/JSFSpringHibernate/blob/master/src/main/java/com/itibo/spring/dao/PersonDaoImpl.java#L16)
 ```java
 ...
@@ -125,16 +142,13 @@ public class PersonDaoImpl implements PersonDao {
 @Table(name = "PERSON")
 @ManagedBean(name = "person")
 public class Person {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String country;
 ...
 ```
 
-###Spring annotation:
+###Spring service layer for buisness logic:
 [PersonServiceImpl.java](https://github.com/UnionOne/JSFSpringHibernate/blob/master/src/main/java/com/itibo/spring/service/PersonServiceImpl.java#L16-L20)
 ```java
 ...
